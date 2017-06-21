@@ -1,0 +1,3 @@
+3;;a:3:{s:4:"name";s:5:"Alexa";s:6:"gender";s:1:"0";s:8:"language";s:2:"ua";}
+1;;a:3:{s:4:"name";s:5:"Masha";s:6:"gender";s:1:"0";s:8:"language";s:2:"es";}0;;a:3:{s:4:"name";s:11:"Ivan Petrov";s:6:"gender";s:1:"1";s:8:"language";s:2:"ru";}
+2;;a:3:{s:4:"name";s:11:"Ivan Petrov";s:6:"gender";s:1:"1";s:8:"language";s:2:"ru";}
