@@ -2,10 +2,14 @@
 
 class Api {
     
-    private  $input;
+    private     $input;
+    private     $rawInput;
+    private     $secretKey;
     
     public function __construct() {
+        $this->secretKey = trim(file_get_contents("secretkey.txt"));
         $this->parsePostInput();
+        //$this->authorizePlatform();
     }
     
     public function success() {
@@ -34,8 +38,20 @@ class Api {
     }
     
     private function parsePostInput() {
-        $rawInput       =   file_get_contents("php://input");
-        $this->input    =   json_decode($rawInput, true, 128);
+        $this->rawInput =   file_get_contents("php://input");
+        $this->input    =   json_decode($this->rawInput, true, 128);
+    }
+    
+    public function authorizePlatform() {
+        global $_SERVER;
+        if (!isset($_SERVER["HTTP_SIGNATURE"])) {
+            $this->apiResponse(array("message" => "signature not found"), 1);
+            exit;
+        }
+        if (sha1( $this->rawInput . $this->secretKey ) != $_SERVER["HTTP_SIGNATURE"]) {
+            $this->apiResponse(array("incorrect signature"), 1);
+            exit;
+        }
     }
     
 }

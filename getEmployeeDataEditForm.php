@@ -23,7 +23,7 @@
     }
     
     $form       =   array(
-        "createButtonText"  =>  $recordId == 0 ? "Add account" : "Edit account",
+        "saveRecordButtonText"  =>  $recordId == 0 ? "Add account" : "Save account",
         "formTitle"         =>  "Edit your data",
         "formSubtitle"      =>  "Add the data you want",
         "forms"             =>  array(
@@ -74,7 +74,7 @@
                 "label"         =>  "Authorize",
                 "labelHint"     =>  "Click on the link to authorize",
                 "contentType"   =>  "link",
-                "contentOptions"=>  array(
+                "content"       =>  array(
                     "url"   =>  "http://my-facebook-factory-url.com/authorize?employee=$recordId",
                     "text"  =>  "Authorize Facebook account # $recordId"
                 ),

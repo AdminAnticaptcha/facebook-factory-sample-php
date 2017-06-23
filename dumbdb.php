@@ -8,11 +8,14 @@
 
 class DumpDB {
     
-    private $dbfile     =   "";
-    private $lineNumber = 0;
+    private $dbfile         =   "";
+    private $lineNumber     =   0;
+    private $maxRecordId    =   0;
     
     public function setDBFile($file) {
-        $this->dbfile = $file;
+        $this->dbfile       =   $file;
+        $this->lineNumber   =   0;
+        $this->maxRecordId  =   0;
     }
     
     public function insertOrUpdateRecord($recordId, $data) {
@@ -23,7 +26,7 @@ class DumpDB {
             $rowsData[$this->lineNumber] = $recordId.";;".serialize($data);
             file_put_contents($this->dbfile, implode("\n", $rowsData));
         } else {
-            file_put_contents($this->dbfile, $recordId.";;".serialize($data)."\n", FILE_APPEND);
+            file_put_contents($this->dbfile, ($this->maxRecordId+1).";;".serialize($data)."\n", FILE_APPEND);
         }
         
     }
@@ -41,7 +44,8 @@ class DumpDB {
         
         $data   =   explode("\n", file_get_contents($this->dbfile));
         foreach ($data as $this->lineNumber => $row) {
-            $rowId  =   substr($row, 0, strpos($row,";;"));
+            $rowId  =   (int)substr($row, 0, strpos($row,";;"));
+            if ($rowId > $this->maxRecordId) $this->maxRecordId = $rowId;
             if ($rowId === $recordId) {
                 return unserialize( substr($row, strpos($row, "$rowId;;") + strlen("$rowId;;")) );
             }

@@ -40,6 +40,7 @@
     }
 
     $api->apiResponse(array(
+        "addRecordButtonText"   =>  "Add new Facebook Account",
         "header"    =>  array(
             "",
             "Alias Name",
