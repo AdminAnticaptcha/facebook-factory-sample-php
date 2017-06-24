@@ -12,7 +12,6 @@
 
     $record     =   $dumpDb->getRecordById($taskId);
     if ($record == false) {
-        echo "id $taskId not found";
         $api->apiResponse(array(), 47);
         exit;
     } else {
