@@ -1,8 +1,16 @@
 <?php
 
     include("api.php");
+    include("dumbdb.php");
         
     $api        =   new Api();
+    $dumpDb     =   new DumpDB();
+
+    $dumpDb->setDBFile("employees.txt");
+
+    $employee   =   $api->getInput("employee");
+
+    $dumpDb->insertOrUpdateRecord($employee["id"], $employee);
 
     $api->apiResponse(array(
         /*

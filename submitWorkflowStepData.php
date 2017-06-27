@@ -17,10 +17,13 @@
         exit;
     } else {
         
-        $screnshotUrl   =   $data["forms"][1]["value"];
-        $record["confirmation"] =   $screnshotUrl;
-        
-        $dumpDb->insertOrUpdateRecord($taskId, $record);
+        if (isset($data["forms"])) {
+            $screnshotUrl = $data["forms"][1]["value"];
+            $record["confirmation"] =   $screnshotUrl;
+            $record["status"]       =   "complete";
+    
+            $dumpDb->insertOrUpdateRecord($taskId, $record);
+        }
         
     }
         

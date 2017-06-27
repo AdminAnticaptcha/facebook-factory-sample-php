@@ -26,7 +26,12 @@ class DumpDB {
             $rowsData[$this->lineNumber] = $recordId.";;".serialize($data);
             file_put_contents($this->dbfile, implode("\n", $rowsData));
         } else {
-            file_put_contents($this->dbfile, ($this->maxRecordId+1).";;".serialize($data)."\n", FILE_APPEND);
+            if ($recordId == 0) {
+                $insertId   =   $this->maxRecordId+1;
+            } else {
+                $insertId   =   $recordId;
+            }
+            file_put_contents($this->dbfile, "$insertId;;".serialize($data)."\n", FILE_APPEND);
         }
         
     }

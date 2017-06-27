@@ -14,6 +14,7 @@
     foreach ($taskIds as $taskId) {
         $row = $dumpDb->getRecordById($taskId);
         if ($row != false) {
+            $row = array("taskId" => $taskId) + $row;
             $records[] = $row;
         }
     }

@@ -1,0 +1,33 @@
+<html>
+<head>
+    <title>Facebook manager</title>
+</head>
+<body>
+
+
+    <h3>Platform Commands</h3>
+    <form method=post action=manage.php>
+    <input type='hidden' name='action' value='getOnlineEmployees'>
+    <input type='submit' value='call getOnlineEmployees'></form>
+    <form method=post action=manage.php>
+    <input type='hidden' name='action' value='getTaskStatus'>
+    <input type="text" name="taskId" placeholder="task ID">
+    <input type='submit' value='call getTaskStatus'></form>
+
+
+    <h3>Tasks</h3>
+    Note: task assignment will work only if task is created via order form or API. <a href="manage.php">reload</a>
+    %tasks%
+
+    <h3>Employees</h3>
+    %employees%
+
+
+    <h3>Settings</h3>
+    %settings%
+
+
+
+
+</body>
+</html>
