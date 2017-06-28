@@ -1,6 +1,6 @@
 # Facebook Likes Factory example
 
-This is set of scripts for a Anti-Captcha Factory Demonstration Server. It is built without database dependencies. Use these scripts as an example to understand how everything words and code your own Factory methods.
+This is set of scripts for a Anti-Captcha Factory Demonstration Server. It is built without database dependencies. Use these scripts as an example to understand how everything works and code your own Factory methods.
 
 ## Step by step instruction to launch your demo factory
 
