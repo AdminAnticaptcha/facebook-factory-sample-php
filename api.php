@@ -9,7 +9,7 @@ class Api {
     public function __construct() {
         $this->secretKey = trim(file_get_contents("secretkey.txt"));
         $this->parsePostInput();
-        //$this->authorizePlatform();
+        $this->authorizePlatform();
     }
     
     public function success() {
@@ -33,7 +33,7 @@ class Api {
     
     public function getInputInt($variable, $default = 0) {
         $value  =   $this->getInput($variable);
-        if (is_numeric($value)) return $value;
+        if (is_numeric($value)) return (int)$value;
         else return $default;
     }
     
