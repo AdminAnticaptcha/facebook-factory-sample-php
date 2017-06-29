@@ -74,6 +74,7 @@
                 <td>$task[action]</td>
                 <td>$task[status]</td>
                 <td>$assignButton</td>
+                <td>".(isset($task["confirmation"]) ? "<a href='$task[confirmation]' target='_blank'>$task[confirmation]</a>" : "-")."</td>
             </tr>
         ";
     }
@@ -141,7 +142,19 @@
                 break;
             
             case "getOnlineEmployees";
-                sendApiRequest("getOnlineEmployees");
+                $list   =   sendApiRequest("getOnlineEmployees")["employeeIds"];
+                echo "<h3>Online employees:</h3><table border='1' width='90%'>
+                <thead><td>ID</td><td>Country</td><td>City</td></thead>";
+                foreach ($employees as $employee) {
+                    if (in_array($employee["id"], $list)) {
+                        echo "<tr>
+                            <td>$employee[id]</td>
+                            <td>$employee[country]</td>
+                            <td>$employee[city]</td>
+                        </tr>";
+                    }
+                }
+                echo "</table>";
                 break;
             
             case "getTaskStatus";
@@ -157,8 +170,8 @@
     }
     
     function sendApiRequest($method, $data = array()) {
-        $apikey     =   file_get_contents("apikey.txt");
-        $factoryCode=   file_get_contents("factorycode.txt");
+        $apikey     =   trim(file_get_contents("apikey.txt"));
+        $factoryCode=   trim(file_get_contents("factorycode.txt"));
         
         if ($apikey == "") {
             echo "api key is empty!";
@@ -204,5 +217,7 @@
         
         
         echo "Decoded:<pre>".print_r(json_decode($result, true), true)."</pre>";
+        
+        return json_decode($result, true);
         
     }
