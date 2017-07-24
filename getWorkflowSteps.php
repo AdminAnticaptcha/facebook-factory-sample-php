@@ -36,7 +36,6 @@
     }
     
     $result     =   array(
-        "taskStatus"        =>  "active",
         "jobTitle"          =>  "Facebookee",
         "steps"             =>  array(
             array(
